@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Order } from "./order.entity";
+import { OrderPizza } from "./orderpizza.entity";
 
 @Entity()
 export class Size{
@@ -9,9 +9,9 @@ export class Size{
     @Column()
     s_size!: string;
 
-    @Column()
+    @Column("decimal", { precision: 10, scale: 2 })
     s_price!: number;
     
-    @OneToMany(() => Order, (order) => order.sizeId)
-    orders!: Order[];
+    @OneToMany(() => OrderPizza, (orderPizza) => orderPizza.size)
+    orderPizzas!: OrderPizza[];
 }

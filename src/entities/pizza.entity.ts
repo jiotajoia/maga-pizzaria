@@ -1,5 +1,5 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Order } from "./order.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { OrderPizza } from "./orderpizza.entity";
 
 @Entity()
 export class Pizza{
@@ -9,6 +9,6 @@ export class Pizza{
     @Column()
     p_flavor!: string;
 
-    @ManyToMany(() => Order, (order) => order.pizzaId)
-    orders!: Order[];
+    @OneToMany(() => OrderPizza, (orderPizza) => orderPizza.pizza)
+    orderPizzas!: OrderPizza[];
 }

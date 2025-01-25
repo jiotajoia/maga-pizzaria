@@ -1,7 +1,6 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 import { Customer } from "./customer.entity";
-import { Size } from "./size.entity";
-import { Pizza } from "./pizza.entity";
+import { OrderPizza } from "./orderpizza.entity";
 
 @Entity()
 export class Order{
@@ -12,24 +11,11 @@ export class Order{
     orderDate!: Timestamp;
 
     @Column()
-    customerId!: number;
-
-    @Column()
-    sizeId!: number;
-    
-    @Column()
-    pizzaId!: number;
-    
-    @Column()
     totalAmount!: number;
 
     @ManyToOne(() => Customer, (customer: { orders: any; }) => customer.orders, { onDelete: "CASCADE" })
     customer!: Customer;
 
-    @ManyToOne(() => Size, (size) => size.orders, { onDelete: "CASCADE" })
-    size!: Size;
-
-    @ManyToMany(() => Pizza, (pizza) => pizza.orders, { cascade: true })
-    @JoinTable()
-    pizzas!: Pizza[];
+    @OneToMany(() => OrderPizza, (orderPizza) => orderPizza.order, { cascade: true })
+    orderPizzas!: OrderPizza[];
 }
