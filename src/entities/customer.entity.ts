@@ -18,6 +18,6 @@ export class Customer{
     @Column()
     address!: string;
     
-    @OneToMany(() => Order, (order) => order.customerId)
+    @OneToMany(() => Order, (order) => order.customer)
     orders!: Order[];
 }
