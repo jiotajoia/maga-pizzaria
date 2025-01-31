@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="\media\images\bruxa.png" type="image/x-icon">
+    <title>MAGA - {{title}}</title>
+        {{#if base}}
+            <base href="{{base}}">
+        {{/if}}
+    <link rel="stylesheet" type="text/css" href= "{{bodyClass}}.css">
+</head>
+
+<body>
+    {{>_navbar}}
+    {{>_msg}}
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer>
+        <p>By jiotajoia, mandavi, batmari</p>
+    </footer>
+</body>
+</html>
