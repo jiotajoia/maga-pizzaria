@@ -15,7 +15,7 @@ authRouter.get('/login', (req: Request, res: Response) => {
 
 authRouter.post('/login', async (req: Request, res: Response) => {
   const { email, password } = req.body;
-
+ 
   await AdminService.login(email, password).then((admin) => {
     if (admin) {
       res.redirect('/maga/admin');
