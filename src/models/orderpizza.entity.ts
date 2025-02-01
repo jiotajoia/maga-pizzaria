@@ -2,14 +2,15 @@ import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from "typeorm";
 import { Order } from "./order.entity";
 import { Pizza } from "./pizza.entity";
 import { Size } from "./size.entity";
+import "reflect-metadata";
 
 @Entity()
 export class OrderPizza {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ type: "int" })
     op_id!: number;
 
-    @ManyToOne(() => Order, (order) => order.orderPizzas, { onDelete: "CASCADE" })
-    order!: Order;
+    @Column({ type: "int" })
+    orderId!: number;
 
     @ManyToOne(() => Pizza, (pizza) => pizza.orderPizzas, { eager: true })
     pizza!: Pizza;
@@ -17,9 +18,9 @@ export class OrderPizza {
     @ManyToOne(() => Size, (size) => size.orderPizzas, { eager: true })
     size!: Size;
 
-    @Column()
+    @Column({ type: "int" })
     quantity!: number;
 
-    @Column()
+    @Column({ type: "int" })
     price!: number;
 }

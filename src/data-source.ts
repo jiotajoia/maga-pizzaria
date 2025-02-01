@@ -1,10 +1,5 @@
-import { DataSource } from "typeorm";
-import { Customer } from "./models/customer.entity";
-import { Order } from "./models/order.entity";
-import { OrderPizza } from "./models/orderpizza.entity";
-import { Pizza } from "./models/pizza.entity";
-import { Size } from "./models/size.entity";
-import { Admin } from "./models/admin.entity";
+require("reflect-metadata");
+const { DataSource } = require("typeorm");
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -13,9 +8,17 @@ export const AppDataSource = new DataSource({
     username: "postgres",
     password: "12345678",
     database: "maga-pizzaria",
-    synchronize: true,
+    synchronize: false,
     logging: true,
-    entities: [Customer, Order, OrderPizza, Pizza, Size, Admin],
+    entities: ['./models/*.js'],
     subscribers: [],
-    migrations: [],
-})
+    migrations: ['./migrations/*.js'],
+}); 
+
+AppDataSource.initialize()
+    .then(()=> {
+        console.log('banco de dados Subiu!')
+    })
+    .catch((err: any)=> {
+        console.error(`erro ao subir o banco ${err}`);
+ }); 

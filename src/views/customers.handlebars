@@ -1,0 +1,36 @@
+<div style="flex-direction: column">
+    <div style="display: flex; justify-content:flex-end;" >
+        <button class="button1" onclick="window.location.href='/maga/registerClient'">Cadastrar Cliente</button>
+    </div>
+
+    <div class="listCard">
+        <h2>Clientes Cadastrados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Bairro</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if customers.length}}
+                    {{#each customers}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{neighbor}}</td>
+                            <td>{{phone}}</td>
+                            <td>{{address}}</td>
+                        </tr>
+                    {{/each}}
+                {{else}}
+                    <tr>
+                        <td colspan="4">Nenhum cliente cadastrado</td>
+                    </tr>
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+</div>
+

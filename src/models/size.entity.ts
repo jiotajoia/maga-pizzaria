@@ -1,12 +1,13 @@
+import "reflect-metadata"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { OrderPizza } from "./orderpizza.entity";
 
 @Entity()
 export class Size{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ type: "int" })
     s_id!: number;
 
-    @Column()
+    @Column({ type: "varchar" })
     s_size!: string;
 
     @Column("decimal", { precision: 10, scale: 2 })

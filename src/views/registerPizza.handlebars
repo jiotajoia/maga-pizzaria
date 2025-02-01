@@ -1,0 +1,16 @@
+{{#each erros}}
+
+<div>{{texto}}</div>
+
+{{/each}}
+
+<form class="formCard" action="/maga/registerPizza" method="post">
+
+    <h2>Cadastrar Sabor de Pizza</h2>
+    
+    <label for="flavor">Sabor: </label>
+    <input type="text" name="flavor" required>
+
+    <button class="button1" type="submit">Cadastrar</button>
+
+</form>

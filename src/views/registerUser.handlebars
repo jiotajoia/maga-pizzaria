@@ -1,0 +1,25 @@
+{{#each erros}}
+
+<div>{{texto}}</div>
+
+{{/each}}
+
+<form class="formCard" action="/maga/register" method="POST">
+    <a class="link" onclick="window.location.href='/maga/login'">Voltar</a>
+    <h2>Criar conta</h2>
+
+    <label for="name">Nome: </label>
+    <input type="text" name="name" required>
+
+    <label for="email">Email: </label>
+    <input type="email" name="email" required>
+
+    <label for="password">Senha: </label>
+    <input type="password" name="password" required>
+
+    <label for="password">Confirme a senha: </label>
+    <input type="password" name="password2" required>
+
+    <button class="button1" type="submit">Criar Conta</button>
+
+</form>

@@ -1,16 +1,17 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import "reflect-metadata"
 
 @Entity()
 export class Admin {
-    @PrimaryGeneratedColumn()
-    id!: number;
+    @PrimaryGeneratedColumn({ type: "int" })
+    a_id!: number;
 
-    @Column()
+    @Column({ type: "varchar" })
     name!: string;
 
-    @Column()
+    @Column({ type: "varchar" })
     email!: string;
 
-    @Column()
+    @Column({ type: "varchar" })
     password!: string;
 }

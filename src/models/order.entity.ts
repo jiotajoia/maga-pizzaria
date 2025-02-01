@@ -1,21 +1,22 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp } from "typeorm";
 import { Customer } from "./customer.entity";
 import { OrderPizza } from "./orderpizza.entity";
+import "reflect-metadata";
 
 @Entity()
 export class Order{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ type: "int" })
     o_id!: number;
 
-    @Column()
+    @Column({ type: "timestamp" })
     orderDate!: Timestamp;
 
-    @Column()
+    @Column({ type: "int" })
     totalAmount!: number;
 
     @ManyToOne(() => Customer, (customer: { orders: any; }) => customer.orders, { onDelete: "CASCADE" })
     customer!: Customer;
 
-    @OneToMany(() => OrderPizza, (orderPizza) => orderPizza.order, { cascade: true })
+    @OneToMany(() => OrderPizza, (orderPizza) => orderPizza.orderId, { cascade: true })
     orderPizzas!: OrderPizza[];
 }

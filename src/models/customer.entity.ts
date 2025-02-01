@@ -1,21 +1,22 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Order } from "./order.entity";
+import "reflect-metadata"
 
 @Entity()
 export class Customer{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ type: "int" })
     c_id!: number
 
-    @Column()
-    _name!: string
+    @Column({ type: "varchar" })
+    name!: string
 
-    @Column()
+    @Column({ type: "varchar" })
     neighbor!: string
     
-    @Column()
+    @Column({ type: "varchar" })
     phone!: string
 
-    @Column()
+    @Column({ type: "varchar" })
     address!: string;
     
     @OneToMany(() => Order, (order) => order.customer)
