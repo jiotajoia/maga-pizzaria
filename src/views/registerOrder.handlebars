@@ -1,0 +1,72 @@
+<div>
+    <div id="client">
+        <h2>Cliente</h2>
+
+        <select id="clientSelect">
+            {{#each customer}}
+            <option value="{{this.c_id}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+        <button id="showClientListBtn">Selecionar Cliente</button>
+    </div>
+    <div style="display: flex; align-items: center;">
+
+        <div style="margin-right: 5px;">
+            <h2>Pizza</h2>
+            <select id="pizzaSelect">
+                {{#each pizza}}
+                <option value="{{this.p_id}}">{{this.p_flavor}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div style="margin-right: 5px;">
+            <h2>Tamanho</h2>
+            <select id="sizeSelect">
+                {{#each size}}
+                <option value="{{this.s_id}}">{{this.s_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+
+
+    <button id="addPizzaBtn">Adicionar Pizza</button>
+</div>
+
+<div class="card" style="display: flex; align-items:baseline;">
+    <h3>Cliente: <span id="clientName">Nome </span></h3>
+    <br>
+    <h3>Pedido: R$ <span id="totalAmount">0</span></h3>
+    <div id="orderSummary">
+    </div>
+</div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#addPizzaBtn').click(function () {
+
+            var pizza = $('#pizzaSelect').val();
+
+            $.ajax({
+                url: '/maga/registerOrder',
+                type: 'POST',
+                data: {
+                    pizza: pizza
+                },
+                success: function (response) {
+                    $('#orderSummary').empty();
+
+                    response.forEach(function (item) {
+                        $('#orderSummary').append('<p>' + item.p_flavor + ' - R$ ' + item.p_price + '</p>');
+                    });
+                },
+                error: function (error) {
+                    console.log('Erro ao atualizar a lista: ', error);
+                }
+            });
+        });
+    });
+
+</script>

@@ -6,6 +6,7 @@ import { engine } from 'express-handlebars';
 import path from 'path';
 import { router } from './routes/index.router';
 import { AppDataSource } from './data-source';
+import Handlebars from 'handlebars';
 
 const app = express();
 
@@ -26,6 +27,9 @@ app.use('/maga', express.static(path.join(__dirname, "media")));
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
 
+Handlebars.registerHelper('json', function(context) {
+    return JSON.stringify(context);
+});
 
 AppDataSource.initialize()
     .then(()=> {
