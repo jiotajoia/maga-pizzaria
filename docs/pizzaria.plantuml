@@ -1,0 +1,52 @@
+@startuml pizzaria
+
+class Cliente {
+    + id: Integer
+    + nome: String
+    + endereco: String
+    + bairro: String
+    + telefone: String
+
+    + getCadastrar(): void
+}
+
+class Pedido {
+    + id: Integer
+    + id_cliente: Integer
+    + tamanho: String
+    + sabor: String
+    + quantidade: double
+    + valor_total: double
+}
+
+class Tamanho {
+    + id: Integer
+    + tamanho: String
+    + preco: double
+    + preco: double
+}
+
+class Pizza {
+    + id: Integer
+    + sabor: String
+
+    + getCadastrar(): void
+}
+
+class OrderPizza {
+    + id: Integer
+    + id_pedido: Integer
+    + tamanho: String
+    + sabor: String
+    + quantidade: double
+    + valor: double
+}
+
+Cliente  --> Pedido: (1...1) 
+Pedido --> Tamanho: (1...1)
+Tamanho --> OrderPizza: (1...N)
+Pedido --> OrderPizza: (1...N)
+Pizza --> OrderPizza: (1...1)
+
+
+@enduml
